@@ -14,7 +14,6 @@ def save_data(user_id, quantity, category, annotation, vector, date):
                 postgres_insert_query = """ INSERT INTO EXPENDITURE (TG_ID, AMOUNT, CATEGORY,
                 ANNOTATION, STATUS, DATE) VALUES (%s, %s, %s, %s, %s, %s) """
                 record_to_insert = (user_id, quantity, category, annotation, vector, date)
-                print(record_to_insert)
                 cur.execute(postgres_insert_query, record_to_insert)
                 conn.commit()
                 return "Данные записаны"

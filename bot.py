@@ -426,12 +426,14 @@ async def annotation_add(message: types.Message, state: FSMContext):
         return await message.reply("Пожалуйста, введите в верном формате: 18:00")
 
 
-
 @dp.message_handler(Text(equals="📅 Выбрать диапазон для данных"))
 async def cmd_add(message: types.Message):
     """ SET DATE FOR RANGE """
     await Calendar.start_date.set()
-    await bot.send_message(message.chat.id, "Введите начальную дату в формате день.месяц.год (22.11.2021)")
+    await bot.send_message(message.chat.id, "Введите начальную дату в формате день.месяц.год (22.11.2021)",
+                           reply_markup=types.ReplyKeyboardRemove() and keybord.delete)
+    # await bot.send_message(message.chat.id, "Выберите диапазон",
+    #                        reply_markup=keybord.markup_report_menu)
 
 
 @dp.message_handler(state=Calendar.start_date)

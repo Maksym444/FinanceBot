@@ -38,7 +38,7 @@ with psycopg.connect(f"dbname={config.database} user={config.user}") as conn:
                  (ID SERIAL PRIMARY KEY,
                  TG_ID INT NOT NULL,
                  WALLET TEXT NOT NULL,
-                 WALLET_CONTENT INT NOT NULL,
+                 WALLET_CONTENT FLOAT NOT NULL,
                  DATE TIMESTAMP NOT NULL);''')
         except psycopg.errors.DuplicateTable:
             logging.warning("Table Wallet exist")
@@ -54,7 +54,7 @@ with psycopg.connect(f"dbname={config.database} user={config.user}") as conn:
             cur.execute('''CREATE TABLE EXPENDITURE
                  (ID SERIAL PRIMARY KEY,
                  TG_ID INT NOT NULL,
-                 AMOUNT INT NOT NULL,
+                 AMOUNT FLOAT NOT NULL,
                  CATEGORY TEXT NOT NULL,
                  ANNOTATION TEXT NOT NULL,
                  STATUS BOOLEAN NOT NULL,
